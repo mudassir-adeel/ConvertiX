@@ -20,10 +20,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 
+        uses: actions/checkout@v4 
 
       - name: Set up Rust
-        uses: actions-rs/toolchain@v1 
+        uses: actions-rs/toolchain@v4 
         with:
           toolchain: stable 
           profile: minimal 
@@ -86,53 +86,53 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 
+        uses: actions/checkout@v4 
 
       
       - name: Download artifact (Linux-x86_64)
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: ubuntu-latest-convertix
           path: artifacts/ubuntu
 
       
       - name: Download artifact (macOS-x86_64)
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: macos-latest-convertix
           path: artifacts/macos
 
       
       - name: Download artifact (Windows-x86_64)
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: windows-latest-convertix
           path: artifacts/windows
 
       
       - name: Download artifact (Linux-aarch64)
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: ubuntu-latest-convertix-aarch64
           path: artifacts/ubuntu
 
       
       - name: Download artifact (macOS-aarch64)
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: macos-latest-convertix-aarch64
           path: artifacts/macos
 
       
       - name: Download artifact (Windows-aarch64)
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: windows-latest-convertix-aarch64
           path: artifacts/windows
 
       - name: Create release
         id: create_release
-        uses: actions/create-release@v1 
+        uses: actions/create-release@v4 
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -147,7 +147,7 @@ jobs:
 
       
       - name: Upload Linux x86_64 artifact
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v4
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -158,7 +158,7 @@ jobs:
 
       
       - name: Upload macOS x86_64 artifact
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v4
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -169,7 +169,7 @@ jobs:
 
       
       - name: Upload Windows x86_64 artifact
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v4
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -180,7 +180,7 @@ jobs:
 
       
       - name: Upload Linux aarch64 artifact
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v4
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -191,7 +191,7 @@ jobs:
 
       
       - name: Upload macOS aarch64 artifact
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v4
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -202,7 +202,7 @@ jobs:
 
       
       - name: Upload Windows aarch64 artifact
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v4
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
