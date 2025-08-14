@@ -1,210 +1,22 @@
-name: Build and Release
+name: Rust
 
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Release tag (e.g. v1.0.0)'
-        required: true
-        default: 'v1.0.0'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }} 
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-15, windows-latest] 
-        arch: [x86_64, aarch64] 
+
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable 
-          profile: minimal 
-          override: true 
-
-      - name: Build project
-        run: cargo build --release 
-
-      
-      - name: Upload artifact (Linux)
-        if: matrix.os == 'ubuntu-latest' && matrix.arch == 'x86_64'
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-latest-convertix
-          path: target/release/convertix
-
-      
-      - name: Upload artifact (Linux aarch64)
-        if: matrix.os == 'ubuntu-latest' && matrix.arch == 'aarch64'
-        uses: actions/upload-artifact@v4
-        with:
-          name: linux-latest-convertix-aarch64
-          path: target/release/convertix
-
-      
-      - name: Upload artifact (macOS)
-        if: matrix.os == 'macos-15' && matrix.arch == 'x86_64'
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos-latest-convertix
-          path: target/release/convertix
-
-      
-      - name: Upload artifact (macOS aarch64)
-        if: matrix.os == 'macos-15' && matrix.arch == 'aarch64'
-        uses: actions/upload-artifact@v4
-        with:
-          name: macos-latest-convertix-aarch64
-          path: target/release/convertix
-
-      
-      - name: Upload artifact (Windows)
-        if: matrix.os == 'windows-latest' && matrix.arch == 'x86_64'
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-latest-convertix
-          path: target/release/convertix.exe
-
-      
-      - name: Upload artifact (Windows aarch64)
-        if: matrix.os == 'windows-latest' && matrix.arch == 'aarch64'
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-latest-convertix-aarch64
-          path: target/release/convertix.exe
-
-  release:
-    runs-on: ubuntu-latest 
-    needs: build 
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4 
-
-      
-      - name: Download artifact (Linux-x86_64)
-        uses: actions/download-artifact@v4
-        with:
-          name: linux-latest-convertix
-          path: artifacts/ubuntu
-
-      
-      - name: Download artifact (macOS-x86_64)
-        uses: actions/download-artifact@v4
-        with:
-          name: macos-latest-convertix
-          path: artifacts/macos
-
-      
-      - name: Download artifact (Windows-x86_64)
-        uses: actions/download-artifact@v4
-        with:
-          name: windows-latest-convertix
-          path: artifacts/windows
-
-      
-      - name: Download artifact (Linux-aarch64)
-        uses: actions/download-artifact@v4
-        with:
-          name: linux-latest-convertix-aarch64
-          path: artifacts/ubuntu
-
-      
-      - name: Download artifact (macOS-aarch64)
-        uses: actions/download-artifact@v4
-        with:
-          name: macos-latest-convertix-aarch64
-          path: artifacts/macos
-
-      
-      - name: Download artifact (Windows-aarch64)
-        uses: actions/download-artifact@v4
-        with:
-          name: windows-latest-convertix-aarch64
-          path: artifacts/windows
-
-      - name: Create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }} 
-        with:
-          tag_name: ${{ github.ref }} 
-          release_name: Release ${{ github.ref }} 
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change 
-          draft: false 
-          prerelease: false 
-
-      
-      - name: Upload Linux x86_64 artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }} 
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: artifacts/ubuntu/convertix 
-          asset_name: convertix-linux-x86_64 
-          asset_content_type: application/octet-stream 
-
-      
-      - name: Upload macOS x86_64 artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }} 
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: artifacts/macos/convertix 
-          asset_name: convertix-macos-x86_64 
-          asset_content_type: application/octet-stream 
-
-      
-      - name: Upload Windows x86_64 artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }} 
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: artifacts/windows/convertix.exe 
-          asset_name: convertix-windows-x86_64.exe 
-          asset_content_type: application/octet-stream 
-
-      
-      - name: Upload Linux aarch64 artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }} 
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: artifacts/ubuntu/convertix 
-          asset_name: convertix-linux-aarch64 
-          asset_content_type: application/octet-stream 
-
-      
-      - name: Upload macOS aarch64 artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }} 
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: artifacts/macos/convertix 
-          asset_name: convertix-macos-aarch64 
-          asset_content_type: application/octet-stream 
-
-      
-      - name: Upload Windows aarch64 artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }} 
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: artifacts/windows/convertix.exe 
-          asset_name: convertix-windows-aarch64.exe 
-          asset_content_type: application/octet-stream 
+    - uses: actions/checkout@v4
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
