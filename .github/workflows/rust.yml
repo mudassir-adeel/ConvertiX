@@ -60,8 +60,10 @@ jobs:
           echo "name=$(basename $(find target/${{ matrix.target }}/release -name '*.exe' | head -1))" >> $GITHUB_OUTPUT
           echo "path=target/${{ matrix.target }}/release/$(basename $(find target/${{ matrix.target }}/release -name '*.exe' | head -1))" >> $GITHUB_OUTPUT
         else
-          echo "name=$(ls target/${{ matrix.target }}/release/ | grep -v '\.d$' | grep -v '\.rlib$' | head -1)" >> $GITHUB_OUTPUT
-          echo "path=target/${{ matrix.target }}/release/$(ls target/${{ matrix.target }}/release/ | grep -v '\.d$' | grep -v '\.rlib$' | head -1)" >> $GITHUB_OUTPUT
+          # Find executable files (not directories, not build artifacts)
+          binary_path=$(find target/${{ matrix.target }}/release -maxdepth 1 -type f -executable ! -name "*.d" ! -name "*.rlib" | head -1)
+          echo "name=$(basename $binary_path)" >> $GITHUB_OUTPUT
+          echo "path=$binary_path" >> $GITHUB_OUTPUT
         fi
 
     - name: Create archive
