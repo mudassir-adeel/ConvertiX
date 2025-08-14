@@ -145,7 +145,7 @@ jobs:
 
       
       - name: Upload Linux x86_64 artifact
-        uses: actions/upload-release-asset@v4
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -156,7 +156,7 @@ jobs:
 
       
       - name: Upload macOS x86_64 artifact
-        uses: actions/upload-release-asset@v4
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -167,7 +167,7 @@ jobs:
 
       
       - name: Upload Windows x86_64 artifact
-        uses: actions/upload-release-asset@v4
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -178,7 +178,7 @@ jobs:
 
       
       - name: Upload Linux aarch64 artifact
-        uses: actions/upload-release-asset@v4
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -189,7 +189,7 @@ jobs:
 
       
       - name: Upload macOS aarch64 artifact
-        uses: actions/upload-release-asset@v4
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
@@ -200,7 +200,7 @@ jobs:
 
       
       - name: Upload Windows aarch64 artifact
-        uses: actions/upload-release-asset@v4
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }} 
         with:
