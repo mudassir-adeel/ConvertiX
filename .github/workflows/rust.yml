@@ -111,7 +111,7 @@ jobs:
       - name: Download artifact (Linux-aarch64)
         uses: actions/download-artifact@v4
         with:
-          name: ubuntu-latest-convertix-aarch64
+          name: linux-latest-convertix-aarch64
           path: artifacts/ubuntu
 
       
