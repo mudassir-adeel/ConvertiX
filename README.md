@@ -56,8 +56,8 @@ Options:
     },
     "operators": {
       "equal": "=",
-      "and": " && ",
-      "or": " || ",
+      "and": "&&",
+      "or": "||",
       "not_equal": "!=",
       "left_paren": "(",
       "right_paren": ")"
