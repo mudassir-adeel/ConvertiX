@@ -4,7 +4,7 @@
 
 ## 项目介绍
 
-`ConvertiX`是一款基于`Rust语言`编写的网络安全工具，它主要用于常用网空测绘平台语句互相转换。支持五大测绘平台：FOFA、QUAKE、HUNTER、ZOOMEYE、THREATBOOK。输入任意一个平台的搜索语句即可获得其余四个平台转换后的语句。
+`ConvertiX`是一款基于`Rust语言`编写的网络安全工具，它主要用于常用网络空间测绘平台语句互相转换。支持五大测绘平台：FOFA、QUAKE、HUNTER、ZOOMEYE、THREATBOOK。输入任意一个平台的搜索语句即可获得其余四个平台转换后的语句。
 
 ## 项目使用
 
